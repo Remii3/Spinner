@@ -1,5 +1,6 @@
-const btn = document.querySelector("button");
-const square = document.getElementById("square");
+const btn = document.getElementById("rotateButton");
+const mainSquare = document.querySelector(".mainSquare");
+const valueDisplay = document.querySelector(".colorDisplaySpace_valueDisplay");
 
 class SquareManipulator {
   constructor() {
@@ -16,17 +17,20 @@ class SquareManipulator {
     }
 
     if (this.scaleChanger === 1) {
-      this.scaleChanger = 3;
+      this.scaleChanger = 2;
       rotationDirection = `rotate(${this.rotationCounter}deg)`;
     } else {
       this.scaleChanger = 1;
       rotationDirection = `rotate(-${this.rotationCounter}deg)`;
     }
 
-    square.style.transform = `translate(-50%, -50%) ${rotationDirection} scale(${this.scaleChanger})`;
-    square.style.backgroundColor = `rgb(${this.rgbChanger[0]} , ${this.rgbChanger[1]} , ${this.rgbChanger[2]})`;
+    mainSquare.style.transform = `translate(-50%, -50%) ${rotationDirection} scale(${this.scaleChanger})`;
+    mainSquare.style.backgroundColor = `rgb(${this.rgbChanger[0]} , ${this.rgbChanger[1]} , ${this.rgbChanger[2]})`;
+    valueDisplay.innerText = `RGB: ${this.rgbChanger[0]} , ${this.rgbChanger[1]} , ${this.rgbChanger[2]}`;
+    valueDisplay.style.color = `rgb(${this.rgbChanger[0]} , ${this.rgbChanger[1]} , ${this.rgbChanger[2]})`;
   };
 }
+
 const newShape = new SquareManipulator();
 
 btn.addEventListener("click", () => {
